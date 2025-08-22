@@ -1,44 +1,66 @@
+package com.example.expensesplitter;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+
 public class ExpensesFragment extends Fragment {
 
-    private EditText editTextExpenseName, editTextAmount;
+    private EditText editTextCategory, editTextAmount;
     private Button buttonAddExpense;
-    private RecyclerView recyclerViewExpenses;
-    private ExpensesAdapter expensesAdapter;
-    private SharedViewModel sharedViewModel;
+    private ListView listViewExpenses;
+    private Spinner spinnerPayer;
+
+    private ArrayList<String> expenseList;
+    private ArrayAdapter<String> adapter;
+
+    private ArrayList<String> friendsList; // From FriendsFragment
+
+    public ExpensesFragment(ArrayList<String> friends) {
+        this.friendsList = friends; // Pass friends list from MainActivity or adapter
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expenses, container, false);
 
-        editTextExpenseName = view.findViewById(R.id.editTextExpenseName);
+        spinnerPayer = view.findViewById(R.id.spinnerPayer);
+        editTextCategory = view.findViewById(R.id.editTextCategory);
         editTextAmount = view.findViewById(R.id.editTextAmount);
         buttonAddExpense = view.findViewById(R.id.buttonAddExpense);
-        recyclerViewExpenses = view.findViewById(R.id.recyclerViewExpenses);
+        listViewExpenses = view.findViewById(R.id.listViewExpenses);
 
-        recyclerViewExpenses.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Set Spinner data (friend names)
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, friendsList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPayer.setAdapter(spinnerAdapter);
 
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-
-        sharedViewModel.getExpensesList().observe(getViewLifecycleOwner(), expenses -> {
-            expensesAdapter = new ExpensesAdapter(expenses);
-            recyclerViewExpenses.setAdapter(expensesAdapter);
-        });
+        expenseList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, expenseList);
+        listViewExpenses.setAdapter(adapter);
 
         buttonAddExpense.setOnClickListener(v -> {
-            String name = editTextExpenseName.getText().toString();
-            String amountText = editTextAmount.getText().toString();
-            if (!name.isEmpty() && !amountText.isEmpty()) {
-                double amount = Double.parseDouble(amountText);
+            String category = editTextCategory.getText().toString();
+            String amount = editTextAmount.getText().toString();
+            String payer = spinnerPayer.getSelectedItem().toString();
 
-                // For now, pick first friend as payer (later add dropdown to select)
-                String payerName = sharedViewModel.getFriendsList().getValue().size() > 0
-                        ? sharedViewModel.getFriendsList().getValue().get(0).getName()
-                        : "Unknown";
+            if (!category.isEmpty() && !amount.isEmpty()) {
+                String expense = payer + " paid ₹" + amount + " for " + category;
+                expenseList.add(expense);
+                adapter.notifyDataSetChanged();
 
-                sharedViewModel.addExpense(new Expense(name, amount, payerName));
-                editTextExpenseName.setText("");
+                editTextCategory.setText("");
                 editTextAmount.setText("");
+            } else {
+                Toast.makeText(getContext(), "Enter category and amount", Toast.LENGTH_SHORT).show();
             }
         });
 
