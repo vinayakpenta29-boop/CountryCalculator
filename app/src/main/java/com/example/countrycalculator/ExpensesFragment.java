@@ -1,53 +1,44 @@
-package com.example.countrycalculator;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
 public class ExpensesFragment extends Fragment {
-    private EditText editTextExpenseCategory, editTextExpenseAmount;
+
+    private EditText editTextExpenseName, editTextAmount;
     private Button buttonAddExpense;
     private RecyclerView recyclerViewExpenses;
-    private ExpenseAdapter expenseAdapter;
-    private ArrayList<Expense> expenseList = new ArrayList<>();
+    private ExpensesAdapter expensesAdapter;
+    private SharedViewModel sharedViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expenses, container, false);
 
-        editTextExpenseCategory = view.findViewById(R.id.editTextExpenseCategory);
-        editTextExpenseAmount = view.findViewById(R.id.editTextExpenseAmount);
+        editTextExpenseName = view.findViewById(R.id.editTextExpenseName);
+        editTextAmount = view.findViewById(R.id.editTextAmount);
         buttonAddExpense = view.findViewById(R.id.buttonAddExpense);
         recyclerViewExpenses = view.findViewById(R.id.recyclerViewExpenses);
 
         recyclerViewExpenses.setLayoutManager(new LinearLayoutManager(getContext()));
-        expenseAdapter = new ExpenseAdapter(expenseList);
-        recyclerViewExpenses.setAdapter(expenseAdapter);
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        sharedViewModel.getExpensesList().observe(getViewLifecycleOwner(), expenses -> {
+            expensesAdapter = new ExpensesAdapter(expenses);
+            recyclerViewExpenses.setAdapter(expensesAdapter);
+        });
 
         buttonAddExpense.setOnClickListener(v -> {
-            String category = editTextExpenseCategory.getText().toString().trim();
-            String amountStr = editTextExpenseAmount.getText().toString().trim();
+            String name = editTextExpenseName.getText().toString();
+            String amountText = editTextAmount.getText().toString();
+            if (!name.isEmpty() && !amountText.isEmpty()) {
+                double amount = Double.parseDouble(amountText);
 
-            if (!category.isEmpty() && !amountStr.isEmpty()) {
-                double amount = Double.parseDouble(amountStr);
-                expenseList.add(new Expense(category, amount));
-                expenseAdapter.notifyDataSetChanged();
+                // For now, pick first friend as payer (later add dropdown to select)
+                String payerName = sharedViewModel.getFriendsList().getValue().size() > 0
+                        ? sharedViewModel.getFriendsList().getValue().get(0).getName()
+                        : "Unknown";
 
-                // Clear inputs
-                editTextExpenseCategory.setText("");
-                editTextExpenseAmount.setText("");
+                sharedViewModel.addExpense(new Expense(name, amount, payerName));
+                editTextExpenseName.setText("");
+                editTextAmount.setText("");
             }
         });
 
