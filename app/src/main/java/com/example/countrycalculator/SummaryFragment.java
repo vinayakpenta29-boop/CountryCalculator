@@ -1,33 +1,9 @@
-package com.example.countrycalculator;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
 public class SummaryFragment extends Fragment {
 
     private TextView textViewTotalExpenses, textViewPerPerson;
     private RecyclerView recyclerViewSummary;
     private SummaryAdapter summaryAdapter;
-
-    // Get shared data (we will store friends and expenses in MainActivity)
-    private ArrayList<Friend> friends;
-    private ArrayList<Expense> expenses;
-
-    public SummaryFragment(ArrayList<Friend> friends, ArrayList<Expense> expenses) {
-        this.friends = friends;
-        this.expenses = expenses;
-    }
+    private SharedViewModel sharedViewModel;
 
     @Nullable
     @Override
@@ -39,6 +15,17 @@ public class SummaryFragment extends Fragment {
         recyclerViewSummary = view.findViewById(R.id.recyclerViewSummary);
 
         recyclerViewSummary.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        sharedViewModel.getFriendsList().observe(getViewLifecycleOwner(), friends -> updateSummary(friends, sharedViewModel.getExpensesList().getValue()));
+        sharedViewModel.getExpensesList().observe(getViewLifecycleOwner(), expenses -> updateSummary(sharedViewModel.getFriendsList().getValue(), expenses));
+
+        return view;
+    }
+
+    private void updateSummary(ArrayList<Friend> friends, ArrayList<Expense> expenses) {
+        if (friends == null || expenses == null) return;
 
         double total = 0;
         for (Expense expense : expenses) {
@@ -60,7 +47,5 @@ public class SummaryFragment extends Fragment {
 
         summaryAdapter = new SummaryAdapter(balances);
         recyclerViewSummary.setAdapter(summaryAdapter);
-
-        return view;
     }
 }
