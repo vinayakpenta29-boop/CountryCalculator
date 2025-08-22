@@ -1,17 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@drawable/orange_yellow_gradient">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Friends and Amount Paid"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/et_friend_name"
+        android:hint="Enter Friend Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
+    <EditText
+        android:id="@+id/et_amount"
+        android:hint="Amount Paid"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_add_friend"
+        android:text="Add Friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_friends"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 </LinearLayout>
