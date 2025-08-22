@@ -5,30 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextExpenseCategory"
-        android:hint="@string/hint_expense_category"
+    <!-- Spinner for selecting payer -->
+    <Spinner
+        android:id="@+id/spinnerPayer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/editTextExpenseAmount"
-        android:hint="@string/hint_expense_amount"
+        android:id="@+id/editTextCategory"
+        android:hint="Expense Category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextAmount"
+        android:hint="Amount"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/buttonAddExpense"
-        android:text="@string/btn_add_expense"
-        android:backgroundTint="@color/colorAccent"
-        android:textColor="@color/black"
+        android:text="Add Expense"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewExpenses"
+    <ListView
+        android:id="@+id/listViewExpenses"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp" />
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
