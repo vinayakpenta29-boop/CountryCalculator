@@ -4,12 +4,63 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class SummaryFragment extends Fragment {
+
+    private TextView textViewTotalExpenses, textViewPerPerson;
+    private RecyclerView recyclerViewSummary;
+    private SummaryAdapter summaryAdapter;
+
+    // Get shared data (we will store friends and expenses in MainActivity)
+    private ArrayList<Friend> friends;
+    private ArrayList<Expense> expenses;
+
+    public SummaryFragment(ArrayList<Friend> friends, ArrayList<Expense> expenses) {
+        this.friends = friends;
+        this.expenses = expenses;
+    }
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_summary, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_summary, container, false);
+
+        textViewTotalExpenses = view.findViewById(R.id.textViewTotalExpenses);
+        textViewPerPerson = view.findViewById(R.id.textViewPerPerson);
+        recyclerViewSummary = view.findViewById(R.id.recyclerViewSummary);
+
+        recyclerViewSummary.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        double total = 0;
+        for (Expense expense : expenses) {
+            total += expense.getAmount();
+        }
+
+        int numFriends = friends.size() == 0 ? 1 : friends.size();
+        double perPerson = total / numFriends;
+
+        textViewTotalExpenses.setText("Total: ₹" + total);
+        textViewPerPerson.setText("Per Person: ₹" + perPerson);
+
+        ArrayList<Balance> balances = new ArrayList<>();
+        for (Friend friend : friends) {
+            double paid = friend.getAmountPaid();
+            double balance = paid - perPerson;
+            balances.add(new Balance(friend.getName(), balance));
+        }
+
+        summaryAdapter = new SummaryAdapter(balances);
+        recyclerViewSummary.setAdapter(summaryAdapter);
+
+        return view;
     }
 }
