@@ -12,4 +12,8 @@
         android:id="@+id/nav_summary"
         android:title="Summary"
         android:icon="@android:drawable/ic_menu_info_details" />
+    <item
+        app:itemIconTint="@color/nav_active"
+        app:itemTextColor="@color/nav_active"
+    
 </menu>
