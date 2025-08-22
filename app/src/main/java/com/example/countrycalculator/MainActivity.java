@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Load default fragment
+        // Load default fragment with animation
         loadFragment(new FriendsFragment());
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
+                    // Add fade-in and fade-out animations
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                     .replace(R.id.fragment_container, fragment)
                     .commit();
             return true;
