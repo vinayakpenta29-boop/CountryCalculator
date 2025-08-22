@@ -1,0 +1,11 @@
+<resources>
+    <color name="colorPrimary">#FFA500</color>      <!-- Orange -->
+    <color name="colorPrimaryDark">#E69500</color>  <!-- Darker Orange -->
+    <color name="colorSecondary">#FFD700</color>    <!-- Yellow -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Bottom nav item colors -->
+    <color name="nav_item_enabled">#FFFFFFFF</color>
+    <color name="nav_item_disabled">#CCFFFFFF</color>
+</resources>
