@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/nav_friends"
-        android:title="Friends"
-        android:icon="@android:drawable/ic_menu_myplaces" />
+        android:id="@+id/navigation_friends"
+        android:icon="@drawable/ic_friends"
+        android:title="Friends" />
+
     <item
-        android:id="@+id/nav_expenses"
-        android:title="Expenses"
-        android:icon="@android:drawable/ic_menu_agenda" />
+        android:id="@+id/navigation_expenses"
+        android:icon="@drawable/ic_expenses"
+        android:title="Expenses" />
+
     <item
-        android:id="@+id/nav_summary"
-        android:title="Summary"
-        android:icon="@android:drawable/ic_menu_info_details" />
+        android:id="@+id/navigation_summary"
+        android:icon="@drawable/ic_summary"
+        android:title="Summary" />
+
     <item
-        app:itemIconTint="@color/nav_active"
-        app:itemTextColor="@color/nav_active"
-    
+        android:id="@+id/navigation_report"
+        android:icon="@drawable/ic_report"
+        android:title="Report" />
+
 </menu>
