@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Country Calculator</string>
+    <string name="created_by">Created by Ravi</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_friends">Friends</string>
+    <string name="nav_expenses">Expenses</string>
+    <string name="nav_summary">Summary</string>
+
+    <!-- Friends screen -->
+    <string name="friends_title">Add Friends and Amount Paid</string>
+    <string name="hint_friend_name">Enter friend name</string>
+    <string name="hint_amount_paid">Amount paid</string>
+    <string name="btn_add_friend">Add Friend</string>
+
+    <!-- Expenses screen -->
+    <string name="expenses_title">Add Expenses</string>
+    <string name="hint_expense_category">Expense category (e.g., Food)</string>
+    <string name="hint_expense_amount">Expense amount</string>
+    <string name="btn_add_expense">Add Expense</string>
+
+    <!-- Summary screen -->
+    <string name="summary_title">Summary</string>
+    <string name="label_total_expenses">Total Expenses</string>
+    <string name="label_total_contributions">Total Contributions</string>
+    <string name="label_each_share">Each person's share</string>
+    <string name="label_balance_extra">Extra money left</string>
+    <string name="label_balance_needed">More money needed</string>
+
+    <!-- Transaction / report -->
+    <string name="transaction_log">Transaction Log</string>
+    <string name="category_summary">Category-wise Summary</string>
+    <string name="no_data">No data available</string>
+
+    <!-- Generic -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+</resources>
