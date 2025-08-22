@@ -1,4 +1,4 @@
-package com.example.expensesplitter;
+package com.example.countrycalculator;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
