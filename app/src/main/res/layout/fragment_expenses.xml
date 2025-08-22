@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/orange_yellow_gradient">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
+    <EditText
+        android:id="@+id/editTextExpenseCategory"
+        android:hint="@string/hint_expense_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editTextExpenseAmount"
+        android:hint="@string/hint_expense_amount"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonAddExpense"
+        android:text="@string/btn_add_expense"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Expenses"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white" />
+        android:layout_height="wrap_content" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp" />
 </LinearLayout>
