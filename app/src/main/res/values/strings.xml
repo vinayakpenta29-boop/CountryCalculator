@@ -25,7 +25,7 @@
     <string name="summary_title">Summary</string>
     <string name="label_total_expenses">Total Expenses</string>
     <string name="label_total_contributions">Total Contributions</string>
-    <string name="label_each_share">Each person's share</string>
+    <string name="label_each_share">Each persons share</string>
     <string name="label_balance_extra">Extra money left</string>
     <string name="label_balance_needed">More money needed</string>
 
