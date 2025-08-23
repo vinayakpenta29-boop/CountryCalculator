@@ -2,12 +2,11 @@
     <color name="colorPrimary">#FFA500</color> <!-- Orange -->
     <color name="colorPrimaryDark">#FF8C00</color> <!-- Dark Orange -->
     <color name="colorAccent">#FFD700</color> <!-- Yellow -->
+    <color name="colorSecondary">#FFD700</color> <!-- Added to fix missing reference (Yellow like Accent) -->
     <color name="splashStart">#FFA500</color>
     <color name="splashEnd">#FFD700</color>
     <color name="nav_active">#FFA500</color>
     <color name="nav_inactive">#808080</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-
 </resources>
-    
