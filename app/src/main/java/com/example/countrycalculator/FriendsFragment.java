@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.countrycalculator.FriendsAdapter;
-import com.ravi.countrycalculator.model.Friend;
-import com.ravi.countrycalculator.viewmodel.SharedViewModel;
+import com.example.countrycalculator.model.Friend;
+import com.example.countrycalculator.viewmodel.SharedViewModel;
 
 public class FriendsFragment extends Fragment {
 
