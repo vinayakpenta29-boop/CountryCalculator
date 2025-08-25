@@ -12,20 +12,20 @@
         android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/et_amount"
+        android:id="@+id/editTextamount"
         android:hint="Amount Paid"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btn_add_friend"
+        android:id="@+id/buttonAddFriend"
         android:text="Add Friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_friends"
+        android:id="@+id/recyclerViewFriends"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
