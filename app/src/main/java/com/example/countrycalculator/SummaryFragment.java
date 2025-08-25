@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ravi.countrycalculator.adapters.FriendsAdapter; // Adjust if your adapter is in another package
-import com.ravi.countrycalculator.models.Friend; // Adjust if Friend model is in another package
-import com.ravi.countrycalculator.viewmodel.SharedViewModel; // Adjust if ViewModel is in another package
+import com.example.countrycalculator.FriendsAdapter;
+import com.example.countrycalculator.model.Friend;
+import com.example.countrycalculator.viewmodel.SharedViewModel;
 
 public class SummaryFragment extends Fragment {
 
