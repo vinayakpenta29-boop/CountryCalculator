@@ -1,24 +1,21 @@
-package com.ravi.countrycalculator;  // keep your package name
+package com.ravi.countrycalculator; // keep your package name
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.ravi.countrycalculator.adapters.FriendsAdapter; // Adjust if your adapter is in another package
-import com.ravi.countrycalculator.models.Friend; // Adjust if Friend model is in another package
-import com.ravi.countrycalculator.viewmodel.SharedViewModel; // Adjust if ViewModel is in another package
-
+import java.util.ArrayList;
 
 public class ExpensesFragment extends Fragment {
 
@@ -32,8 +29,17 @@ public class ExpensesFragment extends Fragment {
 
     private ArrayList<String> friendsList; // From FriendsFragment
 
-    public ExpensesFragment(ArrayList<String> friends) {
-        this.friendsList = friends; // Pass friends list from MainActivity or adapter
+    // ✅ FIX: Remove parameterized constructor, use Bundle instead
+    public ExpensesFragment() {
+        // Required empty public constructor
+    }
+
+    public static ExpensesFragment newInstance(ArrayList<String> friends) {
+        ExpensesFragment fragment = new ExpensesFragment();
+        Bundle args = new Bundle();
+        args.putStringArrayList("friends_list", friends);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Nullable
@@ -46,6 +52,13 @@ public class ExpensesFragment extends Fragment {
         editTextAmount = view.findViewById(R.id.editTextAmount);
         buttonAddExpense = view.findViewById(R.id.buttonAddExpense);
         listViewExpenses = view.findViewById(R.id.listViewExpenses);
+
+        // ✅ Get friends list from arguments
+        if (getArguments() != null) {
+            friendsList = getArguments().getStringArrayList("friends_list");
+        } else {
+            friendsList = new ArrayList<>(); // Empty fallback
+        }
 
         // Set Spinner data (friend names)
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, friendsList);
