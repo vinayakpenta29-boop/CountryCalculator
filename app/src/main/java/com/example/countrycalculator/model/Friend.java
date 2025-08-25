@@ -17,6 +17,11 @@ public class Friend {
         return balance;
     }
 
+    public double getAmountPaid() {
+    return amountPaid;
+    }
+    
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
