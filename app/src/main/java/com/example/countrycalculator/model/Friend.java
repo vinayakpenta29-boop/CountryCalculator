@@ -1,19 +1,23 @@
-package com.example.countrycalculator.model;
+package com.ravi.countrycalculator;
 
 public class Friend {
     private String name;
-    private double amountPaid;
+    private double balance;
 
-    public Friend(String name, double amountPaid) {
+    public Friend(String name) {
         this.name = name;
-        this.amountPaid = amountPaid;
+        this.balance = 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getAmountPaid() {
-        return amountPaid;
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
