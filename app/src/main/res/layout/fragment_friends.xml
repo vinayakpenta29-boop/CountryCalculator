@@ -6,7 +6,7 @@
     android:background="@drawable/orange_yellow_gradient">
 
     <EditText
-        android:id="@+id/editTextFriendName"
+        android:id="@+id/et_friend_name"
         android:hint="Enter Friend Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
