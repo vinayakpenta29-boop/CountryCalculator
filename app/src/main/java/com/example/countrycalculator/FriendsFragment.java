@@ -33,8 +33,8 @@ public class FriendsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
         editTextFriendName = view.findViewById(R.id.et_friend_name);
-        buttonAddFriend = view.findViewById(R.id.buttonAddFriend);
-        recyclerViewFriends = view.findViewById(R.id.recyclerViewFriends);
+        buttonAddFriend = view.findViewById(R.id.btn_add_friend);
+        recyclerViewFriends = view.findViewById(R.id.rv_friends);
 
         recyclerViewFriends.setLayoutManager(new LinearLayoutManager(getContext()));
 
