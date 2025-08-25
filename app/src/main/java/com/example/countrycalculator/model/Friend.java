@@ -1,4 +1,4 @@
-package com.ravi.countrycalculator;
+package com.example.countrycalculator.model;
 
 public class Friend {
     private String name;
