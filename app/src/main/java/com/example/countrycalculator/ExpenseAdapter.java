@@ -30,6 +30,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         Expense expense = expenseList.get(position);
         holder.textViewCategory.setText(expense.getCategory());
         holder.textViewAmount.setText("₹" + expense.getAmount());
+        holder.textViewPayer.setText("Paid by: " + expense.getPayer());
     }
 
     @Override
@@ -38,12 +39,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
 
     public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewCategory, textViewAmount;
+        TextView textViewCategory, textViewAmount, textViewPayer;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewCategory = itemView.findViewById(R.id.textViewCategory);
             textViewAmount = itemView.findViewById(R.id.textViewAmount);
+            textViewPayer = itemView.findViewById(R.id.textViewPayer);
         }
     }
 }
