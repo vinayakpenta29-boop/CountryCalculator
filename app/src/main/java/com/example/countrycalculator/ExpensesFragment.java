@@ -1,4 +1,5 @@
 package com.example.countrycalculator;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -20,15 +22,14 @@ public class ExpensesFragment extends Fragment {
 
     private EditText editTextCategory, editTextAmount;
     private Button buttonAddExpense;
-    private ListView listViewExpenses;
     private Spinner spinnerPayer;
+    private RecyclerView recyclerViewExpenses;
 
-    private ArrayList<String> expenseList;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Expense> expenseList;
+    private ExpenseAdapter expenseAdapter;
 
-    private ArrayList<String> friendsList; // From FriendsFragment
+    private ArrayList<String> friendsList; // from FriendsFragment
 
-    // ✅ FIX: Remove parameterized constructor, use Bundle instead
     public ExpensesFragment() {
         // Required empty public constructor
     }
@@ -50,7 +51,7 @@ public class ExpensesFragment extends Fragment {
         editTextCategory = view.findViewById(R.id.editTextCategory);
         editTextAmount = view.findViewById(R.id.editTextAmount);
         buttonAddExpense = view.findViewById(R.id.buttonAddExpense);
-        listViewExpenses = view.findViewById(R.id.listViewExpenses);
+        recyclerViewExpenses = view.findViewById(R.id.recyclerViewExpenses);
 
         // ✅ Get friends list from arguments
         if (getArguments() != null) {
@@ -59,29 +60,42 @@ public class ExpensesFragment extends Fragment {
             friendsList = new ArrayList<>(); // Empty fallback
         }
 
-        // Set Spinner data (friend names)
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, friendsList);
+        // ✅ Spinner setup
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, friendsList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPayer.setAdapter(spinnerAdapter);
 
+        // ✅ RecyclerView setup
         expenseList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, expenseList);
-        listViewExpenses.setAdapter(adapter);
+        expenseAdapter = new ExpenseAdapter(expenseList);
+        recyclerViewExpenses.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerViewExpenses.setAdapter(expenseAdapter);
 
+        // ✅ Add Expense Button
         buttonAddExpense.setOnClickListener(v -> {
-            String category = editTextCategory.getText().toString();
-            String amount = editTextAmount.getText().toString();
-            String payer = spinnerPayer.getSelectedItem().toString();
+            String category = editTextCategory.getText().toString().trim();
+            String amountText = editTextAmount.getText().toString().trim();
 
-            if (!category.isEmpty() && !amount.isEmpty()) {
-                String expense = payer + " paid ₹" + amount + " for " + category;
+            if (!category.isEmpty() && !amountText.isEmpty()) {
+                double amount;
+                try {
+                    amount = Double.parseDouble(amountText);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(requireContext(), "Enter a valid amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String payer = spinnerPayer.getSelectedItem() != null ? spinnerPayer.getSelectedItem().toString() : "Unknown";
+
+                // ✅ Add new expense to list
+                Expense expense = new Expense(category, amount, payer);
                 expenseList.add(expense);
-                adapter.notifyDataSetChanged();
+                expenseAdapter.notifyItemInserted(expenseList.size() - 1);
 
                 editTextCategory.setText("");
                 editTextAmount.setText("");
             } else {
-                Toast.makeText(getContext(), "Enter category and amount", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Enter category and amount", Toast.LENGTH_SHORT).show();
             }
         });
 
