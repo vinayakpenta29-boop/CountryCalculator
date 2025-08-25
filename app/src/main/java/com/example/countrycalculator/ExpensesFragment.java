@@ -1,5 +1,4 @@
-package com.ravi.countrycalculator; // keep your package name
-
+package com.example.countrycalculator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
