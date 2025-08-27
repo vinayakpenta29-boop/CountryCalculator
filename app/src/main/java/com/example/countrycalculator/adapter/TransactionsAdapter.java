@@ -1,4 +1,4 @@
-package com.example.countrycalculator;
+package com.example.countrycalculator.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
