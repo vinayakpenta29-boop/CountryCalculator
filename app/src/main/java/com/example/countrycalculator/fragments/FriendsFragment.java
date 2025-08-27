@@ -1,4 +1,4 @@
-package com.example.countrycalculator.adapter.fragments;
+package com.example.countrycalculator.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
