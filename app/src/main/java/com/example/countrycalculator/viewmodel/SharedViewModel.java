@@ -3,7 +3,6 @@ package com.example.countrycalculator.viewmodel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.countrycalculator.model.Friend;
 import com.example.countrycalculator.model.Expense;
 
@@ -33,6 +32,13 @@ public class SharedViewModel extends ViewModel {
         List<Expense> current = expensesList.getValue();
         current.add(expense);
         expensesList.setValue(current);
+        // Update Friend's amountPaid
+        for (Friend f : friendsList.getValue()) {
+            if (f.getName().equals(expense.getPayerName())) {
+                f.setAmountPaid(f.getAmountPaid() + expense.getAmount());
+                break;
+            }
+        }
     }
 
     public double getTotalExpenses() {
