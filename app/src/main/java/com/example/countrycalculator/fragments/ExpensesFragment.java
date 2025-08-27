@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.countrycalculator.ExpenseAdapter;
+import com.example.countrycalculator.adapter.ExpenseAdapter;
 import com.example.countrycalculator.model.Expense;
 import com.example.countrycalculator.viewmodel.SharedViewModel;
 
