@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.countrycalculator.R;
-
 public class SplashActivity extends AppCompatActivity {
 
     private ImageView appLogo;
