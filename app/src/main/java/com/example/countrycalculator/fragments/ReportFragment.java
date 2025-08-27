@@ -1,5 +1,7 @@
 package com.example.countrycalculator.fragments;
 
+import com.example.countrycalculator.R;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
