@@ -1,5 +1,11 @@
 package com.example.countrycalculator.adapter;
 
+import com.example.countrycalculator.R;
+import com.example.countrycalculator.fragments.FriendsFragment;
+import com.example.countrycalculator.fragments.ExpensesFragment;
+import com.example.countrycalculator.fragments.SummaryFragment;
+import com.example.countrycalculator.fragments.TransactionsFragment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
