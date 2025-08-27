@@ -3,6 +3,8 @@ package com.example.countrycalculator.viewmodel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.countrycalculator.R;
 import com.example.countrycalculator.model.Friend;
 import com.example.countrycalculator.model.Expense;
 
