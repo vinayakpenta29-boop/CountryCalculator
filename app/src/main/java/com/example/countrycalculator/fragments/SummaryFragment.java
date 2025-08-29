@@ -15,8 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import com.example.countrycalculator.adapter.SummaryAdapter;
 import com.example.countrycalculator.adapter.FriendsAdapter;
+import com.example.countrycalculator.model.Expense;
+import com.example.countrycalculator.model.Balance;
+
 import com.example.countrycalculator.model.Friend;
 import com.example.countrycalculator.viewmodel.SharedViewModel;
 
