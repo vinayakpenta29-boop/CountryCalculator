@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_friends"
+        android:id="@+id/nav_friends"
         android:icon="@drawable/ic_friends"
         android:title="Friends" />
 
     <item
-        android:id="@+id/navigation_expenses"
+        android:id="@+id/nav_expenses"
         android:icon="@drawable/ic_expenses"
         android:title="Expenses" />
 
     <item
-        android:id="@+id/navigation_summary"
+        android:id="@+id/nav_summary"
         android:icon="@drawable/ic_summary"
         android:title="Summary" />
 
