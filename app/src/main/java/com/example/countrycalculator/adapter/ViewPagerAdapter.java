@@ -1,6 +1,5 @@
 package com.example.countrycalculator.adapter;
 
-import com.example.countrycalculator.R;
 import com.example.countrycalculator.fragments.FriendsFragment;
 import com.example.countrycalculator.fragments.ExpensesFragment;
 import com.example.countrycalculator.fragments.SummaryFragment;
