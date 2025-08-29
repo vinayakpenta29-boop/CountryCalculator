@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.ravi.countrycalculator"
+    namespace "com.example.countrycalculator"
     compileSdkVersion 34
 
     defaultConfig {
-        applicationId "com.ravi.countrycalculator"
+        applicationId "com.example.countrycalculator"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
