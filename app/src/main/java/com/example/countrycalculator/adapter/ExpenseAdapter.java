@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.countrycalculator.R;
+
 import com.example.countrycalculator.model.Expense;
 
 import java.util.ArrayList;
