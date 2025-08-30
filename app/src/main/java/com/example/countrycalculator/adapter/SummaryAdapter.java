@@ -32,7 +32,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
     @Override
     public void onBindViewHolder(@NonNull SummaryViewHolder holder, int position) {
         Balance balance = balances.get(position);
-        holder.textViewFriendName.setText(balance.getName());
+        holder.textViewFriendName.setText(balance.getFriendName());
         double value = balance.getBalance();
         String sign = value >= 0 ? "+" : "-";
         holder.textViewBalance.setText(sign + "₹" + Math.abs(value));
