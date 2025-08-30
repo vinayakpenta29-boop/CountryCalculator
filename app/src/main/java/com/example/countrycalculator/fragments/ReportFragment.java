@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import java.util.*;
 
+import com.example.countrycalculator.R;
+
 public class ReportFragment extends Fragment {
 
     private Button buttonCalculateSettlement;
