@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.countrycalculator.R;
+
 import com.example.countrycalculator.adapter.TransactionsAdapter;
 import com.example.countrycalculator.adapter.FriendsAdapter;
 import com.example.countrycalculator.model.Friend;
