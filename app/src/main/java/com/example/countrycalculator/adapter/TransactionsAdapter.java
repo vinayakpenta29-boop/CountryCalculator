@@ -13,6 +13,8 @@ import com.example.countrycalculator.R;
 import com.example.countrycalculator.model.Expense;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.TransactionViewHolder> {
 
