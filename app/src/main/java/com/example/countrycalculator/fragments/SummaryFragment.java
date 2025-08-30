@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.countrycalculator.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.example.countrycalculator.adapter.SummaryAdapter;
 import com.example.countrycalculator.adapter.FriendsAdapter;
 import com.example.countrycalculator.model.Expense;
