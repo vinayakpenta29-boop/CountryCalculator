@@ -50,7 +50,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
         TextView name, amount;
         FriendViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.tv_name);
+            name = itemView.findViewById(R.id.textViewFriendName);
             amount = itemView.findViewById(R.id.tv_amount);
         }
     }
