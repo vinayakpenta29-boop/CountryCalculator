@@ -52,7 +52,7 @@ public class SummaryFragment extends Fragment {
         return view;
     }
 
-    private void updateSummary(ArrayList<Friend> friends, ArrayList<Expense> expenses) {
+    private void updateSummary(List<Friend> friends, List<Expense> expenses) {
         if (friends == null || expenses == null) return;
 
         double total = 0;
