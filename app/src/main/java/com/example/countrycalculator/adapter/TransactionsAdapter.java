@@ -18,8 +18,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
     private final ArrayList<Expense> expenses;
 
-    public TransactionsAdapter(ArrayList<Expense> expenses) {
-        this.expenses = expenses;
+    public TransactionsAdapter(List<Expense> expenses) {
+        this.expenses = new ArrayList<>(expenses);
     }
 
     @NonNull
