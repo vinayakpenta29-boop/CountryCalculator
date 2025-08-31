@@ -65,8 +65,8 @@ public class SummaryFragment extends Fragment {
         int numFriends = friends.size() == 0 ? 1 : friends.size();
         double perPerson = total / numFriends;
 
-        textViewTotalExpenses.setText("Total: ₹" + total);
-        textViewPerPerson.setText("Per Person: ₹" + perPerson);
+        textViewTotalExpenses.setText("Total Expenses: ₹" + total);
+        textViewPerPerson.setText("Per Person Share: ₹" + perPerson);
 
         ArrayList<Balance> balances = new ArrayList<>();
         for (Friend friend : friends) {
