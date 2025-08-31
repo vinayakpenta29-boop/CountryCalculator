@@ -18,4 +18,14 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/bottom_nav_menu" />
 
+    <com.google.android.material.tabs.TabLayout
+    android:id="@+id/tabLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:tabTextColor="#FFFFFF"         <!-- Unselected tab text color -->
+    app:tabSelectedTextColor="#FFEB3B" <!-- Selected tab text color (yellow here) -->
+    app:tabIndicatorColor="#FFEB3B"    <!-- The underline indicator color -->
+/>
+        
+
 </LinearLayout>
