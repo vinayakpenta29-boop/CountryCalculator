@@ -33,7 +33,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
         Friend friend = friends.get(position);
         holder.name.setText(friend.getName());
-        holder.amount.setText("Paid: " + friend.getAmountPaid());
     }
 
     @Override
