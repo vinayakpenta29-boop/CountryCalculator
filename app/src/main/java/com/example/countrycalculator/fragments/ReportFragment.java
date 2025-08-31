@@ -22,9 +22,24 @@ public class ReportFragment extends Fragment {
     private ArrayList<String> friendsList;
     private HashMap<String, Double> paidAmountMap;
 
-    public ReportFragment(ArrayList<String> friends, HashMap<String, Double> paidMap) {
-        this.friendsList = friends;
-        this.paidAmountMap = paidMap; // This map stores total paid by each friend
+    // ✅ Use newInstance pattern instead of direct constructor
+    public static ReportFragment newInstance(ArrayList<String> friends, HashMap<String, Double> paidMap) {
+        ReportFragment fragment = new ReportFragment();
+        Bundle args = new Bundle();
+        args.putStringArrayList("friends", friends);
+        args.putSerializable("paidMap", paidMap);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            friendsList = getArguments().getStringArrayList("friends");
+            paidAmountMap = (HashMap<String, Double>) getArguments().getSerializable("paidMap");
+        }
     }
 
     @Nullable
@@ -36,7 +51,7 @@ public class ReportFragment extends Fragment {
         listViewSettlement = view.findViewById(R.id.listViewSettlement);
 
         settlementList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, settlementList);
+        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, settlementList);
         listViewSettlement.setAdapter(adapter);
 
         buttonCalculateSettlement.setOnClickListener(v -> calculateSettlement());
@@ -47,12 +62,24 @@ public class ReportFragment extends Fragment {
     private void calculateSettlement() {
         settlementList.clear();
 
+        if (friendsList == null || paidAmountMap == null) {
+            settlementList.add("No data available!");
+            adapter.notifyDataSetChanged();
+            return;
+        }
+
         double total = 0;
         for (double val : paidAmountMap.values()) {
             total += val;
         }
 
         int n = friendsList.size();
+        if (n == 0) {
+            settlementList.add("No friends added!");
+            adapter.notifyDataSetChanged();
+            return;
+        }
+
         double fairShare = total / n;
 
         // Create balance map
